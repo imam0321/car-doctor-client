@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import login from '../../assets/images/login/login.svg'
+import login from "../../assets/images/login/login.svg";
 import { useContext } from "react";
 import { AuthContext } from "../../Providers/AuthProvider";
 
@@ -13,19 +13,19 @@ const SignUp = () => {
     const name = form.name.value;
     const email = form.email.value;
     const password = form.password.value;
-    const user = {name, email, password};
+    const user = { name, email, password };
     console.log(user);
 
     createUser(email, password)
-    .then(result => {
-      const user = result.user;
-      navigate('/');
-      console.log(user);
-    })
-    .catch(error => {
-      console.log(error);
-    })
-  }
+      .then((result) => {
+        const user = result.user;
+        navigate("/");
+        console.log(user);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   return (
     <div className="hero min-h-screen bg-base-200 ">

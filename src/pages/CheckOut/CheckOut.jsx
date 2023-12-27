@@ -17,31 +17,29 @@ const CheckOut = () => {
       customerName: name,
       email,
       phone,
-      img: {img},
-      price: {price},
-      service: {title},
-      service_id: _id
-    } 
-    console.log(order);
+      img: img,
+      price: price,
+      service: title,
+      service_id: _id,
+    };
 
-    fetch('http://localhost:5000/bookings', {
-      method: 'POST',
+    fetch("http://localhost:5000/bookings", {
+      method: "POST",
       headers: {
-        'content-type': 'application/json'
+        "content-type": "application/json",
       },
-      body:JSON.stringify(order)
+      body: JSON.stringify(order),
     })
-    .then(res => res.json())
-    .then(data => {
-      console.log(data);
-      if(data.insertedId){
-        alert('Service booking successfully')
-      }
-    })
-
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.insertedId) {
+          alert("Service booking successfully");
+        }
+      });
   };
+
   return (
-    <div className="">
+    <div>
       <h2 className="text-3xl font-semibold text-rose-400 text-center">
         Book Service: {title}
       </h2>

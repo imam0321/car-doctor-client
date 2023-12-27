@@ -4,27 +4,37 @@ import { useContext } from "react";
 import { AuthContext } from "../../../Providers/AuthProvider";
 
 const NavBar = () => {
-  const {user, logOut} = useContext(AuthContext);
-  const handleLogOut = () =>{
+  const { user, logOut } = useContext(AuthContext);
+  const handleLogOut = () => {
     logOut()
-    .then(() => {})
-    .catch(error => console.log(error))
-  }
+      .then(() => {})
+      .catch((error) => console.log(error));
+  };
   const navItems = (
     <>
       <li>
-        <Link to='/'>Home</Link>
+        <Link to="/">Home</Link>
       </li>
       <li>
-        <Link to='/'>About</Link>
+        <Link to="/">About</Link>
       </li>
       <li>
-        <Link to='/'>Blogs</Link>
+        <Link to="/">Blogs</Link>
       </li>
-      {
-        user ? <li><Link onClick={handleLogOut}>LogOut</Link></li> : 
-        <li><Link to='/login'>Login</Link></li>
-      }
+      {user?.email ? (
+        <>
+          <li>
+            <Link to="/bookings">My Bookings</Link>
+          </li>
+          <li>
+            <button onClick={handleLogOut}>LogOut</button>
+          </li>
+        </>
+      ) : (
+        <li>
+          <Link to="/login">Login</Link>
+        </li>
+      )}
     </>
   );
   return (
@@ -59,12 +69,10 @@ const NavBar = () => {
         </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1">
-          {navItems}
-        </ul>
+        <ul className="menu menu-horizontal px-1">{navItems}</ul>
       </div>
       <div className="navbar-end">
-      <button className="btn btn-outline btn-secondary">Appointment</button>
+        <button className="btn btn-outline btn-secondary">Appointment</button>
       </div>
     </div>
   );
